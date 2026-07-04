@@ -8,7 +8,9 @@ import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 4000
-connectDB();
+connectDB().catch((error) => {
+    console.error("MongoDB connection failed:", error.message);
+});
 
 app.use(express.json()); // ✅ must be before routes
 
